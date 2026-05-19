@@ -1,0 +1,56 @@
+# encoding: UTF-8
+
+control 'C-5.2' do
+  title 'Ensure direct data addition to S3'
+  desc  "
+    Your bucket name must be unique and not already in use on AWS. Click on your bucket name, and in the right corner, you will find an option to upload data directly to your S3 bucket. You can choose the file option to upload individual files, images, or even entire folders.
+
+    Accessing the upload option within your bucket simplifies the process of adding data, making it easy to manage and organize your files. This streamlined approach allows for efficient data storage, retrieval, and management within the AWS S3 environment, enhancing overall operational efficiency.
+  "
+  desc  'rationale', "
+    Your bucket name must be unique and not already in use on AWS. Click on your bucket name, and in the right corner, you will find an option to upload data directly to your S3 bucket. You can choose the file option to upload individual files, images, or even entire folders.
+
+    Accessing the upload option within your bucket simplifies the process of adding data, making it easy to manage and organize your files. This streamlined approach allows for efficient data storage, retrieval, and management within the AWS S3 environment, enhancing overall operational efficiency.
+  "
+  desc  'check', "
+    Access Point in S3 Bucket:
+    Access points are named network endpoints that are attached to buckets which simplify 
+    managing data access at scale in S3. To see if any of the access points attached to this 
+    bucket grant public or cross-account access, go to IAM Access Analyzer for S3.
+    1. Enter a name for the access point. The name must be unique within the AWS 
+    account and Region.
+    2. Choose the VPC (Virtual Private Cloud) and subnet where you want the access point to be 
+    accessible. This determines the network traffic routing for the access point.
+    3. Optionally, you can configure additional settings such as permissions, bucket policy, and 
+    endpoint policy for the access point.
+    4. Review the settings, and click on \"Create access point\" to create the access point
+  "
+  desc  'fix', "
+    TODO: fix text missing in source XCCDF
+  "
+  tag severity:              'medium'
+  tag nist:                  ['AC-3', 'AU-4', 'SI-4 (5)', 'AC-8 a']
+  tag cci:                   ['CCI-000213', 'CCI-001848', 'CCI-002663', 'CCI-000051']
+  tag cis_number:            '5.2'
+  tag cis_rid:               '5.2'
+  tag cis_benchmark:         'CIS AWS Storage Services Benchmark v1.0.0'
+  tag cis_rule_id:           'SV-0502r1_rule'
+  tag cis_version:           '1.0.0'
+  tag cis_level:             1
+  tag cis_scored:            true
+  tag applicable_partitions: ['aws', 'aws-us-gov']
+
+  applicable_partition = ['aws', 'aws-us-gov'].include?(input('aws_partition'))
+  applicable           = applicable_partition
+
+  impact 0.5
+  impact 0.0 unless applicable
+
+  only_if("Control out of scope (partition=#{input('aws_partition')})") do
+    applicable
+  end
+
+  describe 'Ensure direct data addition to S3' do
+    skip 'TODO[scaffolder]: implement check against XCCDF check-content. Source rule SV-0502r1_rule.'
+  end
+end

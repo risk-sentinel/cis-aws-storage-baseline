@@ -1,0 +1,342 @@
+# Per-control partition applicability — auditor-facing flat table.
+# Values per partition: applicable | not_applicable | partial
+# `reason` is required when not_applicable or partial.
+# Keep this file in sync with `tag applicable_partitions:` on each control.
+
+controls:
+  - id: 1.1
+    title: "AWS Storage Backups"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 1.2
+    title: "Ensure securing AWS Backups"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 1.3
+    title: "Ensure to create backup template and name"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 1.4
+    title: "Ensure to create AWS IAM Policies"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 1.5
+    title: "Ensure to create IAM roles for Backup"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 1.6
+    title: "Ensure AWS Backup with Service Linked Roles"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 2.1
+    title: "Ensure creating EC2 instance with EBS"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 2.2
+    title: "Ensure configuring Security Groups"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 2.3
+    title: "Ensure the proper configuration of EBS storage"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 2.4
+    title: "Ensure the creation of a new volume"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 2.5
+    title: "Ensure creating snapshots of EBS volumes"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 2.6
+    title: "Ensure Proper IAM Configuration for EC2 Instances"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 2.7
+    title: "Ensure creating IAM User"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 2.8
+    title: "Ensure the Creation of IAM Groups"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 2.9
+    title: "Ensure Granular Policy Creation"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 2.10
+    title: "Ensure Resource Access via Tag-based Policies"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 2.11
+    title: "Ensure Secure Password Policy Implementation"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 2.12
+    title: "Ensure Monitoring EC2 and EBS with CloudWatch"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 2.13
+    title: "Ensure creating an SNS subscription"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 3.1
+    title: "EFS"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 3.2
+    title: "Ensure Implementation of EFS"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 3.3
+    title: "Ensure EFS and VPC Integration"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 3.4
+    title: "Ensure controlling Network access to EFS Services"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 3.5
+    title: "Ensure using Security Groups for VPC"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 3.6
+    title: "Ensure Secure Ports"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 3.7
+    title: "Ensure File-Level Access Control with Mount Targets"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 3.8
+    title: "Ensure managing mount target security groups"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 3.9
+    title: "Ensure using VPC endpoints - EFS"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 3.10
+    title: "Ensure managing AWS EFS access points"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 3.11
+    title: "Ensure accessing Points and IAM Policies"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 3.12
+    title: "Ensure configuring IAM for AWS Elastic Disaster Recovery"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 4.1
+    title: "FSX (AWS Elastic File Cache)"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 4.2
+    title: "Amazon Elastic File Cache"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 4.3
+    title: "Ensure the creation of an FSX Bucket"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 4.4
+    title: "Ensure the creation of Elastic File Cache"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 4.5
+    title: "Ensure installation and configuration of Lustre Client"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 4.6
+    title: "Ensure EC2 Kernel compatibility with Lustre"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 4.7
+    title: "Ensure mounting FSx cache"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 4.8
+    title: "Ensure exporting cache to S3"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 4.9
+    title: "Ensure cleaning up FSx Resources"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 5.1
+    title: "Amazon Simple Storage Service"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 5.2
+    title: "Ensure direct data addition to S3"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 5.3
+    title: "Ensure Storage Classes are Configured"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 6.1
+    title: "Ensure Elastic Disaster Recovery is Configured"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 6.2
+    title: "Ensure AWS Disaster Recovery Configuration"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 6.3
+    title: "Ensure functionality of Endpoint Detection and Response (EDR)"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 6.4
+    title: "Ensure configuration of replication settings"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 6.5
+    title: "Ensure proper IAM configuration for AWS Elastic Disaster Recovery"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 6.6
+    title: "Ensure installation of the AWS Replication Agent"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 6.7
+    title: "Ensure proper configuration of the Launch Settings"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 6.8
+    title: "Ensure execution of a recovery drill"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 6.9
+    title: "Ensure Continuous Disaster Recovery Operations"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 6.10
+    title: "Ensure execution of a Disaster Recovery Failover"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 6.11
+    title: "Ensure execution of a failback"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 6.12
+    title: "Ensure CloudWatch Metrics for AWS EDR"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+
+  - id: 6.13
+    title: "Ensure working of EDR"
+    aws: applicable
+    aws-us-gov: applicable
+    reason: ''
+

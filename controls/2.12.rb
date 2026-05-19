@@ -1,0 +1,70 @@
+# encoding: UTF-8
+
+control 'C-2.12' do
+  title 'Ensure Monitoring EC2 and EBS with CloudWatch'
+  desc  "
+    CloudWatch is an AWS monitoring service that allows you to keep an eye on your AWS resources. You can track metrics via log files or worldclass data visuals. AWS CloudWatch allows the administrator to keep an eye on his/her AWS resources. You can set up alarms, monitor activity, and analyze log data. CloudWatch is a must to keep your AWS EBS and EC2 resources secure.
+
+    Using CloudWatch to monitor EC2 instances and EBS volumes is essential for enhancing operational oversight and ensuring optimal performance within the AWS environment. This approach provides real-time insights into resource usage and system health, enabling proactive adjustments and timely responses to potential issues, thereby maintaining high availability and efficiency.
+  "
+  desc  'rationale', "
+    CloudWatch is an AWS monitoring service that allows you to keep an eye on your AWS resources. You can track metrics via log files or worldclass data visuals. AWS CloudWatch allows the administrator to keep an eye on his/her AWS resources. You can set up alarms, monitor activity, and analyze log data. CloudWatch is a must to keep your AWS EBS and EC2 resources secure.
+
+    Using CloudWatch to monitor EC2 instances and EBS volumes is essential for enhancing operational oversight and ensuring optimal performance within the AWS environment. This approach provides real-time insights into resource usage and system health, enabling proactive adjustments and timely responses to potential issues, thereby maintaining high availability and efficiency.
+  "
+  desc  'check', "
+    Creating an AWS CloudWatch Dashboard:
+    1. Navigate to the AWS CloudWatch Console - https://us-east-2.console.aws.amazon.com/cloudwatch/home?region=us-east-2#home.
+    2. Select the dashboard type that's right for you. Give the dashboard a name. Name the dashboard as something memorable. You can select which resources you want to monitor. Select \"EBS.\"
+    3. Create an alarm - Alarms are important to send you an alert as soon as something suspicious happens on your volume. You can create an alarm to alert you when a certain threshold of IOPS are reached. To create alarm, follow steps -
+    	- Go to \"Alarms\" on the left hand side of the CloudWatch dashboard.
+    	- Select \"Create a new alarm\".
+    	- Select \"EBS\".
+    	- Select what you want to monitor. We're going to choose to monitor the write operations of an EBS volume.
+    	- Go back to the volume that was created in EC2 dashboard and copy the volume ID under the \"volume ID\" field. 
+    	- Configure the settings that you want to trigger an alarm.
+    	- Move onto the next step before continuing.
+  "
+  desc  'fix', "
+    1. Enable CloudWatch Monitoring:
+       - Access the AWS Management Console, navigate to the EC2 dashboard, and select the instances and EBS volumes.
+       - Enable detailed monitoring on each EC2 instance and EBS volume to collect data at a higher granularity.
+
+    2. Configure CloudWatch Alarms:
+       - In the CloudWatch console, set up alarms based on key performance metrics such as CPU utilization, disk read/write operations, and network traffic.
+       - Configure these alarms to notify administrators via email or SMS when thresholds are breached, allowing for immediate action.
+
+    3. Establish Baselines:
+       - Analyze historical performance data from CloudWatch to establish baseline performance metrics for each instance and volume.
+       - Use these baselines to identify abnormal behavior or performance degradation over time.
+
+    4. Automate Responses:
+       - Utilize AWS CloudWatch Events and AWS Lambda to automate responses to specific alarms, such as scaling operations or initiating recovery processes.
+       - Ensure these automated scripts are tested and reflect the operational policies of your organization.
+  "
+  tag severity:              'medium'
+  tag nist:                  ['AC-2 f', 'IA-2 (2)', 'AU-2 a']
+  tag cci:                   ['CCI-000011', 'CCI-000766', 'CCI-000123']
+  tag cis_number:            '2.12'
+  tag cis_rid:               '2.12'
+  tag cis_benchmark:         'CIS AWS Storage Services Benchmark v1.0.0'
+  tag cis_rule_id:           'SV-0212r1_rule'
+  tag cis_version:           '1.0.0'
+  tag cis_level:             1
+  tag cis_scored:            true
+  tag applicable_partitions: ['aws', 'aws-us-gov']
+
+  applicable_partition = ['aws', 'aws-us-gov'].include?(input('aws_partition'))
+  applicable           = applicable_partition
+
+  impact 0.5
+  impact 0.0 unless applicable
+
+  only_if("Control out of scope (partition=#{input('aws_partition')})") do
+    applicable
+  end
+
+  describe 'Ensure Monitoring EC2 and EBS with CloudWatch' do
+    skip 'TODO[scaffolder]: implement check against XCCDF check-content. Source rule SV-0212r1_rule.'
+  end
+end

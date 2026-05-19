@@ -1,0 +1,8 @@
+# Consumer inputs for cis-aws-storage.
+#
+# Override values per-environment via:
+#   cinc-auditor exec profiles/cis-aws-storage \
+#     --input-file profiles/cis-aws-storage/inputs.yml
+# or individually via --input name=value
+
+aws_partition: aws

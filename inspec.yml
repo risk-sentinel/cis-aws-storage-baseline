@@ -20,6 +20,24 @@ inputs:
       AWS partition the scan is running against.
       One of: aws (Commercial), aws-us-gov (GovCloud non-DoD).
 
+  # ---- document_attestation evidence-class bases (sparc-validate#154/#8) ----
+  - name: leveraged_evidence_base
+    type: string
+    value: ''
+    description: Base for leveraged-SYSTEM AWS authorizations (no inherited controls in this profile).
+  - name: policy_provider_base
+    type: string
+    value: ''
+    description: Base for policy-PROVIDER documents the boundary leverages.
+  - name: boundary_docs_base
+    type: string
+    value: ''
+    description: Base for the boundary's OWN config/operational evidence records backing the 49 attestation controls.
+  - name: attestation_max_age_days
+    type: numeric
+    value: 365
+    description: Staleness window (days) for the storage attestation evidence records.
+
 supports:
   - platform: aws
 

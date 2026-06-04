@@ -61,6 +61,7 @@ control 'C-2.4' do
   tag cis_level:             1
   tag cis_scored:            true
   tag applicable_partitions: ['aws', 'aws-us-gov']
+  tag implementation_status: 'implemented'
 
   applicable_partition = ['aws', 'aws-us-gov'].include?(input('aws_partition'))
   applicable           = applicable_partition
@@ -72,7 +73,9 @@ control 'C-2.4' do
     applicable
   end
 
-  describe 'Ensure the creation of a new volume' do
-    skip 'TODO[scaffolder]: implement check against XCCDF check-content. Source rule SV-0204r1_rule.'
+  aws_ebs_volumes.volume_ids.each do |vid|
+    describe aws_ebs_volume(vid) do
+      it { should be_encrypted }
+    end
   end
 end

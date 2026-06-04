@@ -29,6 +29,7 @@ control 'C-2.2' do
   tag cis_level:             1
   tag cis_scored:            true
   tag applicable_partitions: ['aws', 'aws-us-gov']
+  tag implementation_status: 'implemented'
 
   applicable_partition = ['aws', 'aws-us-gov'].include?(input('aws_partition'))
   applicable           = applicable_partition
@@ -40,7 +41,9 @@ control 'C-2.2' do
     applicable
   end
 
-  describe 'Ensure configuring Security Groups' do
-    skip 'TODO[scaffolder]: implement check against XCCDF check-content. Source rule SV-0202r1_rule.'
+  aws_security_groups.group_ids.each do |gid|
+    describe aws_security_group(group_id: gid) do
+      it { should_not allow_in(port: 22, ipv4_range: '0.0.0.0/0') }
+    end
   end
 end

@@ -65,6 +65,7 @@ control 'C-2.11' do
   tag cis_level:             1
   tag cis_scored:            true
   tag applicable_partitions: ['aws', 'aws-us-gov']
+  tag implementation_status: 'implemented'
 
   applicable_partition = ['aws', 'aws-us-gov'].include?(input('aws_partition'))
   applicable           = applicable_partition
@@ -76,7 +77,12 @@ control 'C-2.11' do
     applicable
   end
 
-  describe 'Ensure Secure Password Policy Implementation' do
-    skip 'TODO[scaffolder]: implement check against XCCDF check-content. Source rule SV-0211r1_rule.'
+  describe aws_iam_password_policy do
+    it { should exist }
+    its('minimum_password_length') { should be >= 14 }
+    it { should require_symbols }
+    it { should require_numbers }
+    it { should require_uppercase_characters }
+    it { should require_lowercase_characters }
   end
 end

@@ -39,6 +39,7 @@ control 'C-5.2' do
   tag cis_level:             1
   tag cis_scored:            true
   tag applicable_partitions: ['aws', 'aws-us-gov']
+  tag implementation_status: 'implemented'
 
   applicable_partition = ['aws', 'aws-us-gov'].include?(input('aws_partition'))
   applicable           = applicable_partition
@@ -50,7 +51,9 @@ control 'C-5.2' do
     applicable
   end
 
-  describe 'Ensure direct data addition to S3' do
-    skip 'TODO[scaffolder]: implement check against XCCDF check-content. Source rule SV-0502r1_rule.'
+  aws_s3_buckets.bucket_names.each do |b|
+    describe aws_s3_bucket(b) do
+      it { should_not be_public }
+    end
   end
 end

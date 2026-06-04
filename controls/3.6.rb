@@ -73,6 +73,7 @@ control 'C-3.6' do
   tag cis_level:             1
   tag cis_scored:            true
   tag applicable_partitions: ['aws', 'aws-us-gov']
+  tag implementation_status: 'implemented'
 
   applicable_partition = ['aws', 'aws-us-gov'].include?(input('aws_partition'))
   applicable           = applicable_partition
@@ -84,7 +85,10 @@ control 'C-3.6' do
     applicable
   end
 
-  describe 'Ensure Secure Ports' do
-    skip 'TODO[scaffolder]: implement check against XCCDF check-content. Source rule SV-0306r1_rule.'
+  # EFS uses NFS (TCP 2049); no security group may expose it to the internet.
+  aws_security_groups.group_ids.each do |gid|
+    describe aws_security_group(group_id: gid) do
+      it { should_not allow_in(port: 2049, ipv4_range: '0.0.0.0/0') }
+    end
   end
 end

@@ -36,6 +36,7 @@ control 'C-1.6' do
   tag cis_level:             1
   tag cis_scored:            true
   tag applicable_partitions: ['aws', 'aws-us-gov']
+  tag implementation_status: 'implemented'
 
   applicable_partition = ['aws', 'aws-us-gov'].include?(input('aws_partition'))
   applicable           = applicable_partition
@@ -47,7 +48,7 @@ control 'C-1.6' do
     applicable
   end
 
-  describe 'Ensure AWS Backup with Service Linked Roles' do
-    skip 'TODO[scaffolder]: implement check against XCCDF check-content. Source rule SV-0106r1_rule.'
+  describe aws_iam_role(role_name: 'AWSServiceRoleForBackup') do
+    it { should exist }
   end
 end

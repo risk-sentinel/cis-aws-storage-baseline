@@ -73,9 +73,8 @@ control 'C-2.4' do
     applicable
   end
 
-  aws_ebs_volumes.volume_ids.each do |vid|
-    describe aws_ebs_volume(vid) do
-      it { should be_encrypted }
-    end
+  describe 'EBS volumes with encryption disabled' do
+    subject { aws_ebs_volumes_multi_region(regions: input('scan_regions')).where(encrypted: false).volume_ids }
+    it { should be_empty }
   end
 end

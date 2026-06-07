@@ -20,6 +20,14 @@ inputs:
       AWS partition the scan is running against.
       One of: aws (Commercial), aws-us-gov (GovCloud non-DoD).
 
+  - name: scan_regions
+    type: array
+    value: []
+    description: >-
+      Regions to enumerate for multi-region resources (e.g. EBS volumes, C-2.4).
+      Empty = every region (via ec2:DescribeRegions). Pin to the deployment
+      regions to keep scans fast and quiet.
+
   # ---- document_attestation evidence-class bases (sparc-validate#154/#8) ----
   - name: leveraged_evidence_base
     type: string

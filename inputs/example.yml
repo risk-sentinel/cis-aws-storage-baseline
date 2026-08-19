@@ -1,0 +1,59 @@
+# =============================================================================
+# cis-aws-storage-baseline — reference inputs
+#
+#   cp inputs/example.yml inputs/mine.yml   # edit, then:
+#   cinc-auditor exec . -t aws:// --input-file inputs/mine.yml
+#
+# --input-file is NOT optional. cinc-auditor does not auto-load a profile-root
+# inputs file, and several controls scope themselves out when their input is
+# empty — so omitting it gives you a quieter run rather than a failing one,
+# which is much harder to notice.
+#
+# Every input is listed, including the ones you will probably not change. Each
+# says what an EMPTY value means, because for most of this profile the answer is
+# "the control skips", not "the control fails".
+# =============================================================================
+
+# ---- REQUIRED TO RUN --------------------------------------------------------
+
+# Which AWS partition is being scanned. Per-control applicability is documented
+# in partition_applicability.yml and encoded as `tag applicable_partitions:`.
+# Controls that do not apply to the running partition skip at impact 0.0; they
+# do not fail.
+#   aws         AWS Commercial
+#   aws-us-gov  AWS GovCloud (non-DoD)
+aws_partition: aws
+
+# ---- SCOPING ----------------------------------------------------------------
+
+# Regions to enumerate for multi-region resources such as EBS volumes (C-2.4).
+# EMPTY = every region, discovered via ec2:DescribeRegions. That is correct but
+# slow and noisy; pin it to where you actually deploy.
+#   scan_regions: [us-east-1, us-west-2]
+scan_regions: []
+
+# ---- ATTESTATION — read this before judging your first run ------------------
+#
+# 49 of this profile's 56 controls are attestation-gated. They assess things no
+# storage API can answer — a documented retention decision, a reviewed lifecycle
+# policy, an approved encryption standard — and with no evidence base configured
+# they SKIP with a rationale rather than passing.
+#
+# So a first run with these empty reports roughly 35 passed / 7 failed / 49
+# skipped. That is the profile working correctly, not a broken scan. Setting the
+# bases below is what converts those skips into assessed controls.
+
+# Base URI for leveraged-SYSTEM authorizations (FedRAMP / SOC 2 / ISO) your
+# boundary inherits. No inherited controls in this profile today.
+leveraged_evidence_base: ''
+
+# Base URI for policy-PROVIDER documents your boundary leverages.
+policy_provider_base: ''
+
+# Base URI for your boundary's OWN config and operational evidence records —
+# this is the one backing the 49 attestation controls.
+# EMPTY = all 49 skip.
+boundary_docs_base: ''
+
+# How old an attestation record may be before it stops counting as current.
+attestation_max_age_days: 365

@@ -1,5 +1,7 @@
 # cis-aws-storage-baseline
 
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=risk-sentinel_cis-aws-storage-v1.0.0)](https://sonarcloud.io/summary/new_code?id=risk-sentinel_cis-aws-storage-v1.0.0)
+
 InSpec / CINC Auditor profile validating an AWS account against the
 **CIS AWS Storage Services Benchmark v1.0.0** — 56 controls across S3, EBS, EFS,
 FSx, Backup and the storage-adjacent IAM and KMS surface.

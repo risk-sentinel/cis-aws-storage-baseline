@@ -1,6 +1,6 @@
 # cis-aws-storage — verification coverage matrix
 
-Profile authored from `cis_aws_storage_services_benchmark_v100.xml` (sparc-validate#8)
+Profile authored from `cis_aws_storage_services_benchmark_v100.xml`
 with the #154 evidence-class model (#168). Built on its own merit per
 `each_profile_stands_alone` (S3 overlap with cis-aws-foundations §3 is NOT a reason
 to skip). Principle: verify what the AWS API can assert; attest the rest, honestly.

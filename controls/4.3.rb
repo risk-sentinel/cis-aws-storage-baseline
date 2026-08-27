@@ -51,7 +51,7 @@ control 'C-4.3' do
 
   # Procedural/operational control — the CIS Storage benchmark check-content is a
   # console setup/operational procedure, not an AWS-API-assertable state. Converted
-  # to evidence-class attestation (sparc-validate#154/#8): resolves the per-control
+  # to evidence-class attestation: resolves the per-control
   # override else attestation_uri(:boundary, 'C-4.3'); empty -> Skip (stays
   # saf attest apply-able). category policy.
   uri = input('c_4_3_attestation_uri', value: '')

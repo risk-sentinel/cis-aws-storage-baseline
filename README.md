@@ -183,7 +183,7 @@ Two properties are deliberate: **absent is not empty** (an inapplicable field is
 omitted, an undeterminable one is `null` with a reason), and the record **marks
 which fields are corroborable** against systems the producer does not control.
 
-Schema authority: [dev-sec-ops-baseline#33](https://github.com/risk-sentinel/dev-sec-ops-baseline/issues/33).
+Schema authority: the shared evidence-store schema.
 
 ---
 

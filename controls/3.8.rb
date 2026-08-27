@@ -22,7 +22,21 @@ control 'C-3.8' do
     7. To edit Security Groups, select \"Manage\".From here, you can edit security groups for each mount point. This gives you control of how traffic can flow between each subnet.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Each mount target has its own security group, so a file system reachable from
+    several subnets needs each one scoped separately.
+
+    1. List the mount targets and the security groups attached to each:
+
+        ```
+        aws efs describe-mount-targets --file-system-id <fs-id>
+        aws efs describe-mount-target-security-groups --mount-target-id <mt-id>
+        ```
+
+    2. Give each mount target a security group allowing TCP 2049 only from the
+       clients in that subnet, rather than sharing one permissive group across all
+       of them.
+    3. Where a subnet no longer hosts clients, delete its mount target instead of
+       leaving it reachable.
   "
   tag severity:              'medium'
   tag nist:                  ['AC-3', 'AC-17 (1)', 'AC-8 a']

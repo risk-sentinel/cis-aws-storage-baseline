@@ -37,7 +37,13 @@ control 'C-4.4' do
     13. Choose\" Create Cache.\" You will see your cache in the FSx dashboard.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    1. Create the cache in a private subnet, with no route to an internet gateway.
+    2. Enable encryption at rest using a customer-managed KMS key, and record the
+       key so its rotation and access policy can be audited.
+    3. Attach a security group permitting Lustre traffic only from the client
+       security group, not from a CIDR range.
+    4. Link the cache to the S3 data repository over the VPC rather than the public
+       endpoint, using an S3 gateway endpoint on the subnet's route table.
   "
   tag severity:              'medium'
   tag nist:                  ['CM-6 b']

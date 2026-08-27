@@ -13,10 +13,39 @@ control 'C-5.3' do
     This approach ensures frequently accessed data is readily available, while infrequently accessed data is stored cost-effectively, balancing availability, durability, and cost.
   "
   desc  'check', "
-    TODO: check content missing in source XCCDF
+    This control is satisfied by a documented evidence record rather than by an API
+    assertion, so the profile checks that the record exists and is current rather
+    than inspecting live configuration.
+
+    Point `boundary_docs_base` (or the per-control attestation input) at the
+    evidence record, then confirm the record shows:
+
+    - the lifecycle configuration applied to each bucket in scope, including
+      transitions between storage classes and the access pattern justifying them;
+    - expiry of noncurrent versions and incomplete multipart uploads;
+    - where retention is a compliance obligation, that Object Lock is used rather
+      than a lifecycle rule, so retention cannot be shortened;
+    - the date of the most recent review.
+
+    The control fails if the record is missing, unreachable, or older than
+    `attestation_max_age_days`.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Apply lifecycle rules so objects move to the right class and expire, rather than
+    accumulating in Standard indefinitely.
+
+        ```
+        aws s3api put-bucket-lifecycle-configuration --bucket <bucket-name> --lifecycle-configuration file://lifecycle.json
+        ```
+
+    1. Transition infrequently read data to Standard-IA or Glacier on a schedule
+       matched to how it is actually accessed.
+    2. Expire noncurrent versions and incomplete multipart uploads. Without this,
+       versioning quietly retains every overwritten object, including data you
+       believe you deleted.
+    3. Where retention is a compliance requirement rather than a cost decision, use
+       Object Lock in compliance mode instead of a lifecycle rule, so retention
+       cannot be shortened.
   "
   tag severity:              'medium'
   tag nist:                  ['AC-3', 'AU-4', 'SI-4 (5)']

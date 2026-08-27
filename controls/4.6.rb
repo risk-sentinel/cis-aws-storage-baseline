@@ -27,7 +27,22 @@ control 'C-4.6' do
     ```
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Match the kernel and the Lustre client rather than downgrading the kernel.
+
+    Downgrading to an older kernel to satisfy a client module reintroduces every
+    kernel vulnerability patched since that release, and the instance will drift
+    back on the next update. Prefer, in order:
+
+    1. Install the `lustre-client-modules-aws` metapackage, which tracks the current
+       AWS-supported kernel, so client and kernel advance together.
+    2. If no client build exists for the current kernel, pin the instance to the most
+       recent kernel that does have one, and treat that pin as a tracked exception
+       with a review date - not a permanent state.
+    3. Only if neither is possible, select an AMI whose shipped kernel is supported
+       by the client, rather than downgrading a running host.
+
+    Confirm the result is a supported pair, and that unattended upgrades will not
+    silently move the kernel past the client again.
   "
   tag severity:              'medium'
   tag nist:                  ['IA-5 (1) (e)', 'AC-2 c', 'SI-4 (5)', 'SI-4 a 1']

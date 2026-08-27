@@ -25,7 +25,21 @@ control 'C-6.5' do
     2. Apply the \"AWSElasticDisasterRecoveryFailbackInstallationPolicy\".
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Grant the replication agent a role, not a long-lived user with an access key.
+
+    1. Where the source server is an EC2 instance, attach an instance profile
+       carrying the AWS-managed policy for Elastic Disaster Recovery agent
+       installation. The agent then obtains short-lived credentials from the instance
+       metadata service and nothing needs storing on disk.
+    2. For source servers outside AWS, where a key is unavoidable, create a dedicated
+       IAM user with only that managed policy, no console access, and a documented
+       rotation schedule. Treat the key as a credential of record and monitor its use
+       in CloudTrail.
+    3. Do not reuse the agent identity for anything else, and do not attach
+       administrative policies to it. The installer needs a narrow, specific
+       permission set.
+    4. Review the identity after installation completes - the permissions needed to
+       install are broader than the permissions needed to run.
   "
   tag severity:              'medium'
   tag nist:                  ['AC-2 (2)', 'AC-2 c', 'AC-8 a']

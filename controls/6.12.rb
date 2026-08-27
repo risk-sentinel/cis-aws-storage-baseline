@@ -56,7 +56,17 @@ control 'C-6.12' do
        - Configure the rule and click Create rule.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Replication health is only useful if a person is told when it degrades.
+
+    1. Create a CloudWatch log group for Elastic Disaster Recovery and configure the
+       service to deliver to it.
+    2. Alarm on lag and on replication state, not just on job failure. The failure
+       that matters is a server that has quietly stopped replicating while still
+       appearing in the console.
+    3. Send alarms to an SNS topic with a confirmed subscription, so the notification
+       reaches a monitored mailbox rather than an unconfirmed endpoint.
+    4. Confirm the alarm path end to end by driving an alarm into ALARM state, rather
+       than assuming delivery works.
   "
   tag severity:              'medium'
   tag nist:                  ['CM-6 b']

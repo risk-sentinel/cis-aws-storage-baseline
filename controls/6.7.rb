@@ -24,7 +24,17 @@ control 'C-6.7' do
     6. Return to the dashboard and confirm your configurations are correct.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Launch settings apply to instances launched after the change, so an edit does not
+    affect an already-launched recovery instance.
+
+    1. Set the EC2 launch template used for recovery to the subnet and security
+       groups that match the production posture, not the drill defaults.
+    2. Turn off automatic public IP assignment. A recovery instance that comes up
+       with a public address is exposed at exactly the moment attention is elsewhere.
+    3. Choose an instance type matching production capacity, so a failover does not
+       arrive degraded.
+    4. Set the default version of the launch template, then launch a drill instance
+       and confirm the settings actually took effect.
   "
   tag severity:              'medium'
   tag nist:                  ['AC-18 a', 'IA-5 (1) (e)', 'AC-2 c', 'CM-6 a']

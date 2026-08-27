@@ -75,7 +75,16 @@ control 'C-4.2' do
     	- Create Instance.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Configure the cache and its backing store securely rather than accepting the
+    walkthrough defaults.
+
+    1. Place the cache in a private subnet and attach a security group that allows
+       Lustre traffic only from the client instances.
+    2. Encrypt the cache at rest with a customer-managed KMS key.
+    3. Give the linked S3 bucket Block Public Access, default encryption and
+       versioning before any data is exported to it.
+    4. Grant the client instances a role scoped to the specific cache and bucket
+       rather than a broad FSx or S3 policy.
   "
   tag severity:              'medium'
   tag nist:                  ['AC-3', 'AC-2 (2)', 'AU-4', 'AC-8 a']

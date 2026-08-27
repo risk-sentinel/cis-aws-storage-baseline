@@ -22,7 +22,17 @@ control 'C-6.8' do
     6. To complete the recovery drill, clean up your resources by deleting the recovery instance by selecting actions and \"terminate recovery instances\".
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    1. Confirm every source server shows Ready, reports healthy replication, and has
+       `Initiate drill` as its pending action.
+    2. Initiate a drill - not a recovery - and choose the most recent recovery point
+       unless testing recovery from an older one.
+    3. Verify the drill instance boots, the application starts, and the data is
+       consistent to the expected point in time. A drill that launches an instance
+       but is never logged into has tested the replication, not the recovery.
+    4. Record the measured recovery time and recovery point against the objectives
+       you have committed to, and treat a miss as a finding.
+    5. Terminate the drill instances afterwards, and schedule the next drill. A drill
+       that has not run recently is evidence of nothing.
   "
   tag severity:              'medium'
   tag nist:                  ['MP-7 (a)', 'CP-4 a', 'IR-3']

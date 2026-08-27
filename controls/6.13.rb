@@ -3,10 +3,26 @@
 control 'C-6.13' do
   title 'Ensure working of EDR'
   desc  "
-    TODO: description missing in source XCCDF
+    Verify that AWS Elastic Disaster Recovery is not merely configured but
+    demonstrably working: every in-scope source server replicating continuously,
+    the network path to the service and staging subnet intact, launch settings
+    that produce a usable recovery instance, and alarms that fire when
+    replication degrades.
+
+    A source server listed in the console with a stale recovery point is the
+    failure this control exists to catch. Presence of the agent is not evidence
+    of protection; a recent, healthy recovery point is.
   "
   desc  'rationale', "
-    TODO: description missing in source XCCDF
+    Verify that AWS Elastic Disaster Recovery is not merely configured but
+    demonstrably working: every in-scope source server replicating continuously,
+    the network path to the service and staging subnet intact, launch settings
+    that produce a usable recovery instance, and alarms that fire when
+    replication degrades.
+
+    A source server listed in the console with a stale recovery point is the
+    failure this control exists to catch. Presence of the agent is not evidence
+    of protection; a recent, healthy recovery point is.
   "
   desc  'check', "
     1. Preparing the Environment for EDR - Before getting started with EDR, you must prepare the environment that you want to back up.
@@ -26,7 +42,20 @@ control 'C-6.13' do
     Now, you're ready to launch this template.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Treat the service as working only when a recovery has been demonstrated.
+
+    1. Confirm every in-scope source server reports Continuous Data Protection and
+       healthy replication - not merely that the agent is installed.
+    2. Confirm the network prerequisites still hold: outbound HTTPS to the service
+       endpoints, and TCP 1500 from source servers to the staging subnet.
+    3. Confirm launch settings produce a usable recovery instance, by drill rather
+       than by inspection.
+    4. Confirm alarms fire on replication degradation and reach a monitored
+       destination.
+
+    A server listed in the console with a stale recovery point is the failure mode
+    this control exists to catch, so verify the recovery point age rather than the
+    presence of the server.
   "
   tag severity:              'medium'
   tag nist:                  ['CM-6 b']

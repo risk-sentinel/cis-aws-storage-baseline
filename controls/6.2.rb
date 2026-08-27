@@ -35,10 +35,37 @@ control 'C-6.2' do
     	h.Allow connectivity to EC2 over TCP 443 to connect to API Endpoint
   "
   desc  'check', "
-    TODO: check content missing in source XCCDF
+    This control is satisfied by a documented evidence record rather than by an API
+    assertion, so the profile checks that the record exists and is current rather
+    than inspecting live configuration.
+
+    Point `boundary_docs_base` (or the per-control attestation input) at the
+    evidence record, then confirm the record shows:
+
+    - the replication settings template in use, and that the staging area subnet is
+      private;
+    - EBS encryption on replication volumes and the KMS key used;
+    - the launch template for recovery instances, including subnet, security groups,
+      instance sizing and that public IP assignment is disabled;
+    - replication health for every source server in scope, with recovery point age;
+    - the date and result of the most recent drill.
+
+    The control fails if the record is missing, unreachable, or older than
+    `attestation_max_age_days`.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    1. In AWS Elastic Disaster Recovery, complete the replication settings template
+       before adding source servers, so every server inherits a vetted configuration
+       rather than the console defaults.
+    2. Place the staging area subnet in a private subnet with no inbound access from
+       the internet.
+    3. Enable EBS encryption on the replication volumes with a customer-managed KMS
+       key.
+    4. Set the launch template for recovery instances to the subnet, security groups
+       and instance type you would actually want in a real failover - the defaults
+       are sized for the drill, not for production load.
+    5. Confirm every in-scope server reports healthy replication before treating the
+       configuration as complete.
   "
   tag severity:              'medium'
   tag nist:                  ['CM-6 b']

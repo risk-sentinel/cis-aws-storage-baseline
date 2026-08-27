@@ -13,10 +13,55 @@ control 'C-2.2' do
     Security groups play a critical role in maintaining the security of your AWS resources. It is advisable to restrict traffic to only what is necessary for accessing your instance, thereby minimizing potential security risks.
   "
   desc  'check', "
-    Open traffic for SSH, HTTP, and HTTPS. Make sure to allow traffic from anywhere, unless you will be accessing the instance from a secure workstation or server with a static IP address.
+    From Command Line:
+
+    List every security group in the account that allows inbound traffic from
+    any source address:
+
+    ```
+    aws ec2 describe-security-groups --filters Name=ip-permission.cidr,Values=0.0.0.0/0 --query 'SecurityGroups[].[GroupId,GroupName]' --output table
+    ```
+
+    For each group returned, review the rule that opened it. The control fails if
+    any security group permits inbound TCP 22 from `0.0.0.0/0`, and the same
+    reasoning applies to 3389 on Windows hosts: administrative access must come
+    from a bastion, a client security group, or a named corporate range, never
+    from the internet.
+
+    Inbound 80 and 443 from `0.0.0.0/0` is expected on an internet-facing load
+    balancer. Verify it is not also present on the instances behind it, which
+    should accept traffic only from the load balancer's security group.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Scope each security group to the traffic the workload actually needs, and never
+    expose administrative ports to the internet.
+
+    1. Identify the rules allowing `0.0.0.0/0` (or `::/0`) inbound:
+
+        ```
+        aws ec2 describe-security-groups --filters Name=ip-permission.cidr,Values=0.0.0.0/0 --query 'SecurityGroups[].[GroupId,GroupName]' --output table
+        ```
+
+    2. Revoke any such rule on port 22, and on 3389 for Windows hosts:
+
+        ```
+        aws ec2 revoke-security-group-ingress --group-id <sg-id> --protocol tcp --port 22 --cidr 0.0.0.0/0
+        ```
+
+    3. Replace it with access scoped to the source that genuinely needs it - a
+       bastion or client security group, or a named corporate CIDR:
+
+        ```
+        aws ec2 authorize-security-group-ingress --group-id <sg-id> --protocol tcp --port 22 --source-group <bastion-sg-id>
+        ```
+
+    4. Better still, remove inbound administrative access altogether and reach the
+       instance through AWS Systems Manager Session Manager, which needs no open
+       port and leaves an auditable session record.
+
+    Public HTTP and HTTPS from `0.0.0.0/0` is legitimate for an internet-facing load
+    balancer. It is not legitimate on the instances behind it, which should accept
+    traffic only from the load balancer's security group.
   "
   tag severity:              'medium'
   tag nist:                  ['SI-4 (11)', 'SC-23']

@@ -25,7 +25,19 @@ control 'C-6.10' do
     You can test if the recovery instance is functioning by testing the EC2 instance that is in the source server overview.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Failover differs from a drill in that it is authorised, and it cuts over.
+
+    1. Confirm the declaration authority named in the disaster recovery plan has
+       authorised the failover.
+    2. Select the source servers and initiate a recovery job, choosing the recovery
+       point deliberately - the most recent point may post-date the event that caused
+       the failover.
+    3. Verify the recovered instances are reachable, the application is serving, and
+       dependent services (DNS, certificates, secrets, database endpoints) point at
+       the recovered environment rather than the failed one.
+    4. Record the actual recovery time and recovery point achieved, and keep
+       replication running toward the recovery Region so the environment is itself
+       protected while operating in the failed-over state.
   "
   tag severity:              'medium'
   tag nist:                  ['CM-6 b']

@@ -23,7 +23,17 @@ control 'C-6.4' do
     Now, you're ready to launch this template.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    1. Set the staging area subnet to a private subnet dedicated to replication.
+    2. Enable EBS encryption for the replication volumes and choose a
+       customer-managed KMS key, so replicated production data is not sitting under
+       the AWS-managed default key.
+    3. Size the replication server instance type to the source servers' write
+       throughput. The `t3.micro` default is adequate only for low I/O workloads and
+       will silently fall behind on anything busier, leaving a stale recovery point.
+    4. Enable the option to use a dedicated replication server per source only where
+       isolation between workloads is required, since it multiplies cost.
+    5. Set a snapshot retention window that matches the recovery point objective you
+       have committed to.
   "
   tag severity:              'medium'
   tag nist:                  ['CM-6 b']

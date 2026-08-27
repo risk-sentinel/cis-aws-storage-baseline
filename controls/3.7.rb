@@ -13,7 +13,22 @@ control 'C-3.7' do
     Using mount targets ensures seamless access to the EFS file system across different availability zones within a VPC. This automatic provisioning of mount targets in each availability zone provides high availability and redundancy, essential for maintaining uninterrupted data access. It simplifies configuration and enhances the resilience and scalability of the file system architecture.
   "
   desc  'check', "
-    TODO: check content missing in source XCCDF
+    This control is satisfied by a documented evidence record rather than by an API
+    assertion, so the profile checks that the record exists and is current rather
+    than inspecting live configuration.
+
+    Point `boundary_docs_base` (or the per-control attestation input) at the
+    evidence record, then confirm the record shows:
+
+    - the access points defined for each file system, with the POSIX user, group and
+      root directory each pins its application to;
+    - the file system policy, including that it requires IAM authentication and
+      denies requests where `aws:SecureTransport` is false;
+    - that clients mount with the `iam` and `tls` options;
+    - the date of the most recent review.
+
+    The control fails if the record is missing, unreachable, or older than
+    `attestation_max_age_days`.
   "
   desc  'fix', "
     Control access by modifying mount targets in each availability zone.

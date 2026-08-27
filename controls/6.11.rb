@@ -30,7 +30,22 @@ control 'C-6.11' do
     6. Clean up failback job; terminate recovery job by following the steps outlined above when we ran a drill.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Failback returns the workload to the original site, and reverses the direction of
+    replication.
+
+    1. Confirm the original environment is repaired and safe to receive traffic
+       before starting.
+    2. Boot the original server from the failback client, and supply the Region of
+       the recovery instance. Prefer credentials from an instance profile or a
+       short-lived session over a long-lived access key, and revoke any key issued
+       for the failback once it completes.
+    3. Let replication run in reverse until the failback client reports the original
+       server is in sync. Cutting over early loses the writes made while operating in
+       the recovery Region.
+    4. Cut over during a planned window, verify the application on the original site,
+       then re-establish forward replication so protection resumes.
+    5. Terminate the recovery instances only after the original site is confirmed
+       healthy.
   "
   tag severity:              'medium'
   tag nist:                  ['CM-6 b']

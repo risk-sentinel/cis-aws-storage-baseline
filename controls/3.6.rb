@@ -60,7 +60,20 @@ control 'C-3.6' do
          3. Conduct periodic training for staff on security best practices and AWS configurations.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Close the ports that are open without a reason, at both layers.
+
+    1. Security groups are stateful and allow-only. Remove inbound rules that are
+       not tied to a specific consumer, and prefer source-security-group references
+       over CIDR ranges.
+    2. Network ACLs are stateless: an inbound allow needs a matching outbound rule
+       for the ephemeral port range, so an over-tight NACL breaks traffic while an
+       over-broad one adds nothing. Use NACLs for coarse subnet-level denies and
+       leave fine-grained control to security groups.
+    3. Reach storage services over VPC endpoints rather than opening egress to the
+       internet. An interface endpoint for EFS, or a gateway endpoint for S3, keeps
+       the traffic on the AWS network and lets you drop broad outbound rules.
+    4. Re-check after any change that the file system still mounts, then confirm no
+       rule allows `0.0.0.0/0` on an administrative port.
   "
   tag severity:              'medium'
   tag nist:                  ['AC-3', 'SI-4 (11)', 'AC-17 (1)']

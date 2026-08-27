@@ -27,7 +27,21 @@ control 'C-5.1' do
     access.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Set the bucket-level protections that every other S3 control depends on.
+
+        ```
+        aws s3api put-public-access-block --bucket <bucket-name> --public-access-block-configuration BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true
+        aws s3api put-bucket-versioning --bucket <bucket-name> --versioning-configuration Status=Enabled
+        aws s3api put-bucket-ownership-controls --bucket <bucket-name> --ownership-controls 'Rules=[{ObjectOwnership=BucketOwnerEnforced}]'
+        ```
+
+    `BucketOwnerEnforced` disables ACLs entirely, so access is decided by policy
+    alone and an object cannot be made public by the account that wrote it. Add a
+    bucket policy denying requests where `aws:SecureTransport` is false, and enable
+    default encryption with a KMS key.
+
+    Where public access must genuinely be blocked account-wide, set the same block
+    at the account level so a new bucket cannot opt out.
   "
   tag severity:              'medium'
   tag nist:                  ['AC-3', 'AU-4', 'SI-4 (5)', 'AC-8 a']

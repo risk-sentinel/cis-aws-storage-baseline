@@ -26,7 +26,21 @@ control 'C-4.8' do
     4. Now check your S3 bucket that was created earlier.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Data leaving the cache lands in S3 and inherits that bucket's posture, so the
+    export path is where the control applies.
+
+    1. Confirm the linked bucket has default encryption, Block Public Access and
+       versioning enabled before archiving anything to it.
+    2. Archive through the HSM interface and verify the object appears with the
+       expected encryption:
+
+        ```
+        sudo lfs hsm_archive <file>
+        aws s3api head-object --bucket <bucket-name> --key <key>
+        ```
+
+    3. Enable a CloudTrail data event trail on the bucket so reads of exported data
+       are attributable.
   "
   tag severity:              'medium'
   tag nist:                  ['CM-6 b']

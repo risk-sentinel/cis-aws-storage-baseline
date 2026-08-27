@@ -30,7 +30,19 @@ control 'C-6.3' do
     Now, you're ready to launch this template.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Open only the paths replication requires, and verify each one.
+
+    1. From each source server, allow outbound HTTPS (TCP 443) to the Elastic
+       Disaster Recovery and S3 service endpoints, and outbound TCP 1500 to the
+       staging area subnet.
+    2. On the staging area subnet, allow outbound HTTPS to the Elastic Disaster
+       Recovery, S3 and EC2 endpoints.
+    3. Prefer VPC interface endpoints over internet egress so replication traffic
+       stays on the AWS network and the source servers need no route to an internet
+       gateway.
+    4. Confirm each source server reaches Continuous Data Protection state. A server
+       stuck in an earlier state is not protected, regardless of the console showing
+       it in the list.
   "
   tag severity:              'medium'
   tag nist:                  ['AU-2 a', 'SC-23', 'SI-4 a 1']

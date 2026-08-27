@@ -39,7 +39,15 @@ control 'C-4.5' do
     ```
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Treat the Lustre client as managed software on the instance.
+
+    1. Install the client package matching the running kernel from the distribution
+       repository, and record it in the instance's package baseline so image rebuilds
+       reproduce it.
+    2. Bring the client into the patch process that covers the rest of the host, so a
+       client vulnerability is picked up by the same scanning that covers the OS.
+    3. Reach the instance for this work through Systems Manager Session Manager
+       rather than opening SSH to perform the install.
   "
   tag severity:              'medium'
   tag nist:                  ['AC-3', 'IA-5 (1) (e)', 'SI-4 (5)', 'AC-8 a']

@@ -26,7 +26,20 @@ control 'C-5.2' do
     4. Review the settings, and click on \"Create access point\" to create the access point
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Put an access point in front of the bucket so each consumer gets its own
+    constrained entry point rather than a shared bucket policy.
+
+        ```
+        aws s3control create-access-point --account-id <account-id> --name <access-point-name> --bucket <bucket-name> --vpc-configuration VpcId=<vpc-id>
+        ```
+
+    1. Supplying `--vpc-configuration` makes the access point reachable only from
+       that VPC, which is what prevents data being pulled from the internet even if
+       a credential leaks.
+    2. Give each access point a policy granting only the prefixes and actions that
+       consumer needs.
+    3. Run IAM Access Analyzer for S3 and confirm no access point reports public or
+       cross-account access that was not intended.
   "
   tag severity:              'medium'
   tag nist:                  ['AC-3', 'AU-4', 'SI-4 (5)', 'AC-8 a']

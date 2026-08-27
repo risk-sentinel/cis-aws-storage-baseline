@@ -14,7 +14,20 @@ control 'C-3.5' do
     3. Ensure that incoming traffic is restricted to SSH access on port 22 using TCP protocol and outbound traffic is accepting all traffic.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Restrict the mount target security group to NFS traffic from the clients that
+    mount the file system.
+
+    1. Remove any rule allowing all traffic, or SSH, on the mount target security
+       group. A mount target serves NFS and nothing else.
+    2. Allow inbound TCP 2049 only from the security group attached to the EC2
+       instances that mount the file system:
+
+        ```
+        aws ec2 authorize-security-group-ingress --group-id <mount-target-sg> --protocol tcp --port 2049 --source-group <client-sg>
+        ```
+
+    3. Referencing the client security group rather than a CIDR keeps the rule
+       correct as instances are replaced.
   "
   tag severity:              'medium'
   tag nist:                  ['AC-2 (2)', 'AC-17 (1)']

@@ -34,7 +34,22 @@ control 'C-2.1' do
     4. You can add multiple volumes if needed.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    The security of an EBS-backed instance rests on how the volume is configured,
+    not on the instance existing.
+
+    1. Launch instances from an AMI whose root volume is encrypted, or enable
+       EBS encryption by default for the Region so every new volume is encrypted
+       regardless of who launches it.
+    2. Encrypt with a customer-managed KMS key where key rotation and access must be
+       auditable separately from the account.
+    3. Leave `DeleteOnTermination` set on the root volume, and clear it on data
+       volumes that must outlive the instance.
+    4. Attach an instance profile rather than embedding credentials, and confirm no
+       secret material is passed through user data.
+
+        ```
+        aws ec2 enable-ebs-encryption-by-default
+        ```
   "
   tag severity:              'medium'
   tag nist:                  ['SC-28', 'AC-8 a']

@@ -31,7 +31,21 @@ control 'C-6.6' do
     9. If install runs successfully, the source server will appear in your Elastic Disaster Recovery Console dashboard on the \"source servers\" page. This will signify the beginning of the replication process.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    1. Obtain the installer link from the Elastic Disaster Recovery console rather
+       than a copied URL, so the Region and the current version are correct.
+    2. Download over HTTPS and run the installer with the agent identity, supplying
+       the Region:
+
+        ```
+        sudo python3 aws-replication-installer-init --region <region>
+        ```
+
+    3. Verify the source server appears in the console and progresses to Continuous
+       Data Protection. An agent that installs but never reaches that state is
+       reporting no protection.
+    4. Bring the agent into the patch process for the host, and re-verify replication
+       health after any kernel update, since the agent's block-level driver is
+       kernel dependent.
   "
   tag severity:              'medium'
   tag nist:                  ['SI-12', 'AC-2 c', 'AC-2 (2)']

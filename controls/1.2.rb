@@ -49,7 +49,19 @@ control 'C-1.2' do
     tailored to your requirements or option for a per-defined template offered by AWS
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Harden the vault holding the backups, not just the backup schedule.
+
+    1. Encrypt the vault with a customer-managed KMS key so key access can be
+       revoked independently of the backup service.
+    2. Apply a vault access policy that denies `backup:DeleteRecoveryPoint` and
+       `backup:UpdateRecoveryPointLifecycle` to everyone except a small break-glass
+       role, so an operator credential cannot destroy the recovery points.
+    3. Enable AWS Backup Vault Lock in compliance mode once retention is settled.
+       In compliance mode the retention period cannot be shortened by anyone,
+       including the account root, which is what makes the backups ransomware
+       resistant.
+    4. Copy critical recovery points to a vault in a second account or Region, so
+       loss of the primary account does not take the backups with it.
   "
   tag severity:              'medium'
   tag nist:                  ['CM-6 b']

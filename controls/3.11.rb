@@ -52,7 +52,23 @@ control 'C-3.11' do
     ```
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Control access at the file system, not only at the network.
+
+    1. Attach a file system policy that denies any access not using TLS and not
+       authenticated by IAM:
+
+        ```
+        aws efs put-file-system-policy --file-system-id <fs-id> --policy file://policy.json
+        ```
+
+       The policy should grant `elasticfilesystem:ClientMount` and `ClientWrite`
+       only to the roles that need them, and include a condition denying requests
+       where `aws:SecureTransport` is false.
+    2. Use EFS access points to pin each application to its own directory, POSIX
+       user and group, so one workload cannot read another's files even when both
+       can mount the file system.
+    3. Mount with the `iam` and `tls` options so the client actually presents its
+       role identity over an encrypted channel.
   "
   tag severity:              'medium'
   tag nist:                  ['AC-3', 'AC-2 c', 'AC-8 a']

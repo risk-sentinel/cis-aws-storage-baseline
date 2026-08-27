@@ -25,10 +25,35 @@ control 'C-1.1' do
     and services.
   "
   desc  'check', "
-    TODO: check content missing in source XCCDF
+    This control is satisfied by a documented evidence record rather than by an API
+    assertion, so the profile checks that the record exists and is current rather
+    than inspecting live configuration.
+
+    Point `boundary_docs_base` (or the per-control attestation input) at the
+    evidence record, then confirm the record shows:
+
+    - which storage resources are in scope, and the backup plan covering each;
+    - the schedule and retention applied, and how they map to the stated recovery
+      point and recovery time objectives;
+    - evidence that a restore has been tested, with the date and the result.
+
+    The control fails if the record is missing, unreachable, or older than
+    `attestation_max_age_days`.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Bring every in-scope storage resource under an AWS Backup plan rather than
+    relying on ad-hoc snapshots.
+
+    1. In AWS Backup, create a backup vault encrypted with a customer-managed KMS
+       key, and a backup plan whose schedule and retention meet your recovery
+       objectives.
+    2. Assign resources to the plan by tag rather than by ARN, so newly created
+       volumes, file systems and buckets are covered without a plan edit.
+    3. Confirm coverage in Backup > Protected resources: any EBS volume, EFS file
+       system, FSx file system or S3 bucket holding production data that does not
+       appear there is unprotected.
+    4. Enable AWS Backup Audit Manager, or an equivalent report, so gaps in coverage
+       surface without a manual review.
   "
   tag severity:              'medium'
   tag nist:                  ['CM-6 b']

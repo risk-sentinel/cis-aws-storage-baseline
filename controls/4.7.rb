@@ -30,7 +30,21 @@ control 'C-4.7' do
     You can also use the df command to see the DNS and mount point is attached to your file system:
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Mount the cache so the transport and the client's identity are both constrained.
+
+    1. Mount using the cache's DNS name and mount name, from an instance in the
+       cache's VPC:
+
+        ```
+        sudo mount -t lustre -o relatime,flock <cache-dns-name>@tcp:/<mountname> /mnt/cache
+        ```
+
+    2. Add the mount to `/etc/fstab` with `_netdev` so a reboot does not leave the
+       workload running against an empty directory.
+    3. Mount on a path owned by the service account that uses it, and avoid mounting
+       at `/mnt` itself where any local user can traverse it.
+    4. Confirm the instance reaches the cache over private addressing, not through a
+       public route.
   "
   tag severity:              'medium'
   tag nist:                  ['AC-3', 'IA-5 (1) (e)', 'AC-2 (2)', 'AU-4']

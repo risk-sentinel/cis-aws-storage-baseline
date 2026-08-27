@@ -13,7 +13,23 @@ control 'C-4.1' do
     Amazon File Cache is used as a temporary, high performance storage location for data that's stored in on-premises file systems, AWS file systems, and Amazon S3 buckets. This service is used for data processing and is best suited for applications that need high data processing speeds. This is not a long term storage option.
   "
   desc  'check', "
-    TODO: check content missing in source XCCDF
+    This control is satisfied by a documented evidence record rather than by an API
+    assertion, so the profile checks that the record exists and is current rather
+    than inspecting live configuration.
+
+    Point `boundary_docs_base` (or the per-control attestation input) at the
+    evidence record, then confirm the record shows:
+
+    - the file caches in scope, the subnet each sits in, and that none is in a
+      public subnet;
+    - encryption at rest and the KMS key used;
+    - the security groups permitting Lustre traffic, and the client groups they
+      reference;
+    - the linked S3 data repository and its public-access, encryption and versioning
+      posture.
+
+    The control fails if the record is missing, unreachable, or older than
+    `attestation_max_age_days`.
   "
   desc  'fix', "
     You can link your cache to S3 data repositories or to any file system that supports the NFSv3 protocol. The NFS data repository can either be on premises or in the cloud and you can link a maximum of eight repositories. All the linked repositories must be using the same file system; either S3 or NFS. When linked to a data repository, Amazon File Cache transparently presents S3 or NFS objects as files and directories. 

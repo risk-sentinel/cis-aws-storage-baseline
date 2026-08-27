@@ -56,7 +56,16 @@ control 'C-6.9' do
        - Check that regular communication channels are established for DR updates and training sessions.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    1. Keep a disaster recovery plan that names the roles, the decision authority for
+       declaring a disaster, and the recovery and failback procedures - and review it
+       on a defined cycle rather than after an incident.
+    2. Confirm the technical configuration still matches the plan: AWS Backup plans
+       cover the resources the plan assumes, replication is healthy for every source
+       server, and retention satisfies the stated recovery point objective.
+    3. Re-test after material change. A plan validated against last year's
+       architecture is not evidence for this year's.
+    4. Retain drill results, review records and sign-off as the evidence for this
+       control, since the state it asserts is procedural rather than API-visible.
   "
   tag severity:              'medium'
   tag nist:                  ['CM-6 b']

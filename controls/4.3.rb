@@ -23,7 +23,19 @@ control 'C-4.3' do
     8. Create a path in your bucket, give it a name and leave the encryption as default for now.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Create the linked bucket with its protections on from the start, since data is
+    exported into it automatically.
+
+        ```
+        aws s3api create-bucket --bucket <bucket-name> --region <region>
+        aws s3api put-public-access-block --bucket <bucket-name> --public-access-block-configuration BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true
+        aws s3api put-bucket-versioning --bucket <bucket-name> --versioning-configuration Status=Enabled
+        aws s3api put-bucket-encryption --bucket <bucket-name> --server-side-encryption-configuration '{\"Rules\":[{\"ApplyServerSideEncryptionByDefault\":{\"SSEAlgorithm\":\"aws:kms\",\"KMSMasterKeyID\":\"<kms-key-arn>\"},\"BucketKeyEnabled\":true}]}'
+        ```
+
+    Add a bucket policy denying requests where `aws:SecureTransport` is false, and
+    enable server access logging or a CloudTrail data event trail so reads of the
+    exported data are recorded.
   "
   tag severity:              'medium'
   tag nist:                  ['AC-3', 'AC-2 (2)', 'AU-4', 'AC-8 a']

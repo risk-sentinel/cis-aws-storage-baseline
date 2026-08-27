@@ -13,7 +13,21 @@ control 'C-2.3' do
     Remember that we are working with cloud computing. Rather than purchasing and manually installing disk drives on a server, AWS allows you to virtually add storage using Elastic Block Store (EBS).
   "
   desc  'check', "
-    TODO: check content missing in source XCCDF
+    This control is satisfied by a documented evidence record rather than by an API
+    assertion, so the profile checks that the record exists and is current rather
+    than inspecting live configuration.
+
+    Point `boundary_docs_base` (or the per-control attestation input) at the
+    evidence record, then confirm the record shows:
+
+    - the standard EBS configuration applied to instances in scope: encryption by
+      default, the KMS key used, volume type, and the `DeleteOnTermination` posture
+      for root and data volumes;
+    - how that standard is enforced for new volumes rather than applied by hand;
+    - the date of the most recent review.
+
+    The control fails if the record is missing, unreachable, or older than
+    `attestation_max_age_days`.
   "
   desc  'fix', "
     1. Open the Amazon EC2 Console: Navigate to the EC2 Dashboard in the AWS Management Console.

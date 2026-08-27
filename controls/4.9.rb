@@ -23,7 +23,21 @@ control 'C-4.9' do
     Select the bucket that you want to delete and select ```Delete ```n the S3 console.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Decommissioning is where data is most often left behind. Remove the resources in
+    dependency order and confirm the data is actually gone.
+
+    1. Export or archive anything still needed, then unmount the cache from every
+       client.
+    2. Delete the file cache, and confirm its status reaches DELETED rather than
+       assuming the request succeeded.
+    3. Empty and delete the linked S3 bucket only after confirming no other workload
+       reads it. If versioning is enabled, delete the noncurrent versions and delete
+       markers too - emptying a versioned bucket through the console leaves them.
+    4. Terminate the client instances and delete the EBS volumes that did not have
+       `DeleteOnTermination` set.
+    5. Remove the IAM roles, security groups and KMS key grants created for the
+       cache, so no orphaned permission remains pointing at a resource that no
+       longer exists.
   "
   tag severity:              'medium'
   tag nist:                  ['AC-4', 'AU-4', 'SI-4 (5)']

@@ -21,7 +21,22 @@ control 'C-2.13' do
     To attach the SNS notification service to the alarm - select the SNS subscription that you just created and create the alarm.
   "
   desc  'fix', "
-    TODO: fix text missing in source XCCDF
+    Deliver storage alarms to a subscribed topic so they reach a person.
+
+    1. Create the topic and subscribe the operations distribution list. Use a shared
+       mailbox rather than an individual, so the alert survives staff changes:
+
+        ```
+        aws sns create-topic --name storage-alarms
+        aws sns subscribe --topic-arn <topic-arn> --protocol email --notification-endpoint <ops-distribution-list>
+        ```
+
+    2. Confirm the subscription from the email AWS sends. An unconfirmed
+       subscription accepts the alarm and silently delivers nothing.
+    3. Enable server-side encryption on the topic with a KMS key, and apply a topic
+       policy restricting `sns:Publish` to CloudWatch in your account.
+    4. Point the storage alarms at the topic and verify end to end by setting an
+       alarm temporarily into ALARM state.
   "
   tag severity:              'medium'
   tag nist:                  ['CM-6 b']

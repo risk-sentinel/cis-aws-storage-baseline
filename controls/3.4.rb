@@ -13,7 +13,22 @@ control 'C-3.4' do
     Maintaining network security is a best practice essential for keeping your data safe and secure.
   "
   desc  'check', "
-    TODO: check content missing in source XCCDF
+    This control is satisfied by a documented evidence record rather than by an API
+    assertion, so the profile checks that the record exists and is current rather
+    than inspecting live configuration.
+
+    Point `boundary_docs_base` (or the per-control attestation input) at the
+    evidence record, then confirm the record shows:
+
+    - which EFS file systems are in scope and the network path to each;
+    - the mount target security groups, and that inbound is limited to TCP 2049 from
+      named client security groups;
+    - that no mount target is reachable from a public subnet or an unrestricted
+      CIDR;
+    - the date of the most recent review.
+
+    The control fails if the record is missing, unreachable, or older than
+    `attestation_max_age_days`.
   "
   desc  'fix', "
     Implement network security access controls.

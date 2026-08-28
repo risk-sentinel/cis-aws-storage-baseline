@@ -21,7 +21,7 @@
 # (e.g. aws_ebs_volumes_multi_region.rb) can inherit `AwsResourceBase`
 # directly without any explicit require of their own.
 #
-# Context: cis-aws-storage #3 (multi-region EBS volume coverage). Mirrors
+# Context: multi-region EBS volume coverage. Mirrors
 # the same bootstrap in cis-aws-compute-v1.1.0.
 
 vendor_patterns = [

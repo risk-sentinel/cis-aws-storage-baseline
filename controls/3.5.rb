@@ -30,6 +30,7 @@ control 'C-3.5' do
        correct as instances are replaced.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['AC-2 (2)', 'AC-17 (1)']
   tag cci:                   ['CCI-001682', 'CCI-000067']
   tag cis_number:            '3.5'

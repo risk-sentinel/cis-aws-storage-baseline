@@ -36,6 +36,7 @@ control 'C-4.1' do
     Amazon File Cache is compatible to be used interchangeably with Amazon Elastic Compute Service, Amazon Elastic Container Service, and Amazon Elastic Kubernetes Service.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['AC-3', 'AU-4', 'SI-4 (5)', 'AC-8 a']
   tag cci:                   ['CCI-000213', 'CCI-001848', 'CCI-002663', 'CCI-000051']
   tag cis_number:            '4.1'

@@ -48,6 +48,7 @@ control 'C-6.6' do
        kernel dependent.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['SI-12', 'AC-2 c', 'AC-2 (2)']
   tag cci:                   ['CCI-001678', 'CCI-002113', 'CCI-001682']
   tag cis_number:            '6.6'

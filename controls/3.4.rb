@@ -34,6 +34,7 @@ control 'C-3.4' do
     Implement network security access controls.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['AC-3', 'SI-4 (5)', 'AC-17 (2)']
   tag cci:                   ['CCI-000213', 'CCI-002663', 'CCI-000068']
   tag cis_number:            '3.4'

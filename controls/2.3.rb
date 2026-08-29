@@ -59,6 +59,7 @@ control 'C-2.3' do
     By following these steps, you can effectively configure and manage EBS storage for your AWS instances.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['AC-18 a', 'CP-2 a 1']
   tag cci:                   ['CCI-002323', 'CCI-000443']
   tag cis_number:            '2.3'

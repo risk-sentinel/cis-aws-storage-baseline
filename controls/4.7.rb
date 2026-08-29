@@ -47,6 +47,7 @@ control 'C-4.7' do
        public route.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['AC-3', 'IA-5 (1) (e)', 'AC-2 (2)', 'AU-4']
   tag cci:                   ['CCI-000213', 'CCI-000200', 'CCI-001682', 'CCI-001848']
   tag cis_number:            '4.7'

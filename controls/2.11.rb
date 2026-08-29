@@ -55,6 +55,7 @@ control 'C-2.11' do
        - Automate responses where possible to enforce compliance immediately when a deviation from the password policy is detected.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['AC-18 a', 'SC-7 a', 'AC-2 (2)', 'AC-2 c']
   tag cci:                   ['CCI-002323', 'CCI-001097', 'CCI-001682', 'CCI-002113']
   tag cis_number:            '2.11'

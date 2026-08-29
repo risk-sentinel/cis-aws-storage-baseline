@@ -34,6 +34,7 @@ control 'C-1.4' do
     measures to prevent future incidents.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['CM-6 b']
   tag cci:                   ['CCI-000366']
   tag cis_number:            '1.4'

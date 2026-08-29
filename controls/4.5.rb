@@ -50,6 +50,7 @@ control 'C-4.5' do
        rather than opening SSH to perform the install.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['AC-3', 'IA-5 (1) (e)', 'SI-4 (5)', 'AC-8 a']
   tag cci:                   ['CCI-000213', 'CCI-000200', 'CCI-002663', 'CCI-000051']
   tag cis_number:            '4.5'

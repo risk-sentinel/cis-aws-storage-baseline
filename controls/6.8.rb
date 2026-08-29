@@ -35,6 +35,7 @@ control 'C-6.8' do
        that has not run recently is evidence of nothing.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['MP-7 (a)', 'CP-4 a', 'IR-3']
   tag cci:                   ['CCI-002581', 'CCI-000490', 'CCI-000818']
   tag cis_number:            '6.8'

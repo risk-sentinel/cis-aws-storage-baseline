@@ -37,6 +37,7 @@ control 'C-6.7' do
        and confirm the settings actually took effect.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['AC-18 a', 'IA-5 (1) (e)', 'AC-2 c', 'CM-6 a']
   tag cci:                   ['CCI-002323', 'CCI-000200', 'CCI-002113', 'CCI-000363']
   tag cis_number:            '6.7'

@@ -28,6 +28,7 @@ control 'C-3.12' do
     Configure IAM Credentials for AWS Elastic Disaster Recovery.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['AC-3', 'AC-2 c', 'AC-8 a']
   tag cci:                   ['CCI-000213', 'CCI-002113', 'CCI-000051']
   tag cis_number:            '3.12'

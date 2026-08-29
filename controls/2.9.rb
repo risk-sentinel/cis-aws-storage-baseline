@@ -70,6 +70,7 @@ control 'C-2.9' do
        - Maintain up-to-date documentation on IAM policies and access controls for reference during audits and compliance assessments.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['AC-2 c', 'RA-5 a']
   tag cci:                   ['CCI-002113', 'CCI-001054']
   tag cis_number:            '2.9'

@@ -43,6 +43,7 @@ control 'C-2.12' do
        - Ensure these automated scripts are tested and reflect the operational policies of your organization.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['AC-2 f', 'IA-2 (2)', 'AU-2 a']
   tag cci:                   ['CCI-000011', 'CCI-000766', 'CCI-000123']
   tag cis_number:            '2.12'

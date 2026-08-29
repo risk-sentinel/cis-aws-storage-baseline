@@ -86,6 +86,7 @@ control 'C-2.6' do
        - Regularly review the findings and adjust permissions to ensure that only the necessary external access is granted.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['AC-11 b', 'AC-2 c']
   tag cci:                   ['CCI-000056', 'CCI-002113']
   tag cis_number:            '2.6'

@@ -51,6 +51,7 @@ control 'C-2.4' do
        - Ensure your EBS volume is in the same Availability Zone as your EC2 instance. An EBS volume can only be attached to an EC2 instance within the same Availability Zone. You can mount and unmount EBS volumes to any EC2 instance within the same zone as needed.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['AC-18 a', 'CP-2 a 1']
   tag cci:                   ['CCI-002323', 'CCI-000443']
   tag cis_number:            '2.4'

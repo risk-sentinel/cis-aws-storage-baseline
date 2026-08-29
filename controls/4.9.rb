@@ -40,6 +40,7 @@ control 'C-4.9' do
        longer exists.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['AC-4', 'AU-4', 'SI-4 (5)']
   tag cci:                   ['CCI-001548', 'CCI-001848', 'CCI-002663']
   tag cis_number:            '4.9'

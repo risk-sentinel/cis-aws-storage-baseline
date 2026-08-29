@@ -62,6 +62,7 @@ control 'C-2.8' do
        - Set up monitoring alerts to notify administrators of any suspicious activities related to IAM groups.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['AC-2 c', 'SA-3 a', 'RA-5 a']
   tag cci:                   ['CCI-002113', 'CCI-000615', 'CCI-001054']
   tag cis_number:            '2.8'

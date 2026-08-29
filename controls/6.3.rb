@@ -45,6 +45,7 @@ control 'C-6.3' do
        it in the list.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['AU-2 a', 'SC-23', 'SI-4 a 1']
   tag cci:                   ['CCI-000123', 'CCI-001184', 'CCI-001253']
   tag cis_number:            '6.3'

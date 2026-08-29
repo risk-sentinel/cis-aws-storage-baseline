@@ -45,6 +45,7 @@ control 'C-4.6' do
     silently move the kernel past the client again.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['IA-5 (1) (e)', 'AC-2 c', 'SI-4 (5)', 'SI-4 a 1']
   tag cci:                   ['CCI-000200', 'CCI-002113', 'CCI-002663', 'CCI-001253']
   tag cis_number:            '4.6'

@@ -30,6 +30,7 @@ control 'C-1.5' do
     for AWS backups.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['CM-6 b']
   tag cci:                   ['CCI-000366']
   tag cis_number:            '1.5'

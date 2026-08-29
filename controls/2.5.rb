@@ -82,6 +82,7 @@ control 'C-2.5' do
     By following these steps, you can create an EBS snapshot to ensure you have a backup of your volume at a specific point in time.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['CM-6 b']
   tag cci:                   ['CCI-000366']
   tag cis_number:            '2.5'

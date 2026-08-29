@@ -39,6 +39,7 @@ control 'C-3.8' do
        leaving it reachable.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['AC-3', 'AC-17 (1)', 'AC-8 a']
   tag cci:                   ['CCI-000213', 'CCI-000067', 'CCI-000051']
   tag cis_number:            '3.8'

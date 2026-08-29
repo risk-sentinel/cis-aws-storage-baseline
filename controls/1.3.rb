@@ -40,6 +40,7 @@ control 'C-1.3' do
     to these backups to prevent unauthorized access and ensure data security.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['CM-6 b']
   tag cci:                   ['CCI-000366']
   tag cis_number:            '1.3'

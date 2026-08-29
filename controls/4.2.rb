@@ -87,6 +87,7 @@ control 'C-4.2' do
        rather than a broad FSx or S3 policy.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['AC-3', 'AC-2 (2)', 'AU-4', 'AC-8 a']
   tag cci:                   ['CCI-000213', 'CCI-001682', 'CCI-001848', 'CCI-000051']
   tag cis_number:            '4.2'

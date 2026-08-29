@@ -30,7 +30,10 @@ control 'C-3.9' do
     Use VPC Endpoints in tandem with AWS Private Link to secure your EFS connections.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['SI-4 (11)', 'AU-7 a', 'AC-17 (2)', 'AC-8 a']
+  tag ksi:                   ['KSI-IAM-ELP', 'KSI-MLA-OSM', 'KSI-SVC-ASM', 'KSI-SVC-SIN']
+  tag nist_r4:               ['AC-17 (2)', 'AU-7 a', 'SI-4 (11)']
   tag cci:                   ['CCI-002668', 'CCI-001875', 'CCI-000068', 'CCI-000051']
   tag cis_number:            '3.9'
   tag cis_rid:               '3.9'

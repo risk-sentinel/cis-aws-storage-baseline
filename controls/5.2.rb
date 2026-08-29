@@ -42,7 +42,10 @@ control 'C-5.2' do
        cross-account access that was not intended.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['AC-3', 'AU-4', 'SI-4 (5)', 'AC-8 a']
+  tag ksi:                   ['KSI-IAM-APM', 'KSI-IAM-ELP', 'KSI-IAM-JIT', 'KSI-INR-RIR', 'KSI-MLA-LET', 'KSI-MLA-OSM']
+  tag nist_r4:               ['AC-3', 'AU-4', 'SI-4 (5)']
   tag cci:                   ['CCI-000213', 'CCI-001848', 'CCI-002663', 'CCI-000051']
   tag cis_number:            '5.2'
   tag cis_rid:               '5.2'

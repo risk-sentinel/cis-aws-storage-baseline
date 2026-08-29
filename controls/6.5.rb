@@ -42,7 +42,10 @@ control 'C-6.5' do
        install are broader than the permissions needed to run.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['AC-2 (2)', 'AC-2 c', 'AC-8 a']
+  tag ksi:                   ['KSI-IAM-AAM', 'KSI-IAM-APM', 'KSI-IAM-JIT', 'KSI-IAM-SNU', 'KSI-IAM-SUS']
+  tag nist_r4:               ['AC-2 (2)', 'AC-2 c']
   tag cci:                   ['CCI-001682', 'CCI-002113', 'CCI-000051']
   tag cis_number:            '6.5'
   tag cis_rid:               '6.5'

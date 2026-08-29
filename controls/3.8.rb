@@ -39,7 +39,10 @@ control 'C-3.8' do
        leaving it reachable.
   "
   tag severity:              'medium'
+  tag severity_source:       'unassessed'
   tag nist:                  ['AC-3', 'AC-17 (1)', 'AC-8 a']
+  tag ksi:                   ['KSI-IAM-APM', 'KSI-IAM-ELP', 'KSI-IAM-JIT', 'KSI-MLA-LET', 'KSI-MLA-OSM']
+  tag nist_r4:               ['AC-17 (1)', 'AC-3']
   tag cci:                   ['CCI-000213', 'CCI-000067', 'CCI-000051']
   tag cis_number:            '3.8'
   tag cis_rid:               '3.8'

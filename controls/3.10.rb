@@ -42,6 +42,7 @@ control 'C-3.10' do
   tag severity:              'medium'
   tag severity_source:       'unassessed'
   tag nist:                  ['AC-3', 'AC-2 c', 'AC-8 a']
+  tag ksi:                   ['KSI-IAM-APM', 'KSI-IAM-ELP', 'KSI-IAM-JIT', 'KSI-IAM-SNU', 'KSI-IAM-SUS']
   tag nist_r4:               ['AC-2 c', 'AC-3']
   tag cci:                   ['CCI-000213', 'CCI-002113', 'CCI-000051']
   tag cis_number:            '3.10'

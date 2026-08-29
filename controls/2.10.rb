@@ -70,6 +70,7 @@ control 'C-2.10' do
   tag severity:              'medium'
   tag severity_source:       'unassessed'
   tag nist:                  ['AC-2 (2)', 'AC-8 a']
+  tag ksi:                   ['KSI-IAM-AAM', 'KSI-IAM-JIT', 'KSI-IAM-SNU']
   tag nist_r4:               ['AC-2 (2)']
   tag cci:                   ['CCI-001682', 'CCI-000051']
   tag cis_number:            '2.10'

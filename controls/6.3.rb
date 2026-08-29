@@ -47,6 +47,7 @@ control 'C-6.3' do
   tag severity:              'medium'
   tag severity_source:       'unassessed'
   tag nist:                  ['AU-2 a', 'SC-23', 'SI-4 a 1']
+  tag ksi:                   ['KSI-CMT-LMC', 'KSI-IAM-APM', 'KSI-IAM-ELP', 'KSI-IAM-JIT', 'KSI-MLA-LET', 'KSI-MLA-OSM', 'KSI-MLA-RVL', 'KSI-SVC-EIS', 'KSI-SVC-SIN', 'KSI-SVC-VCM', 'KSI-SVC-VRI']
   tag nist_r4:               ['AU-2 a', 'SC-23', 'SI-4 a 1']
   tag cci:                   ['CCI-000123', 'CCI-001184', 'CCI-001253']
   tag cis_number:            '6.3'

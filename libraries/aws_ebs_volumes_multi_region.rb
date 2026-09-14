@@ -16,6 +16,7 @@
 # on the path when InSpec instance_evals this file).
 
 class AwsEbsVolumesMultiRegion < AwsResourceBase
+  include RegionScope
   name "aws_ebs_volumes_multi_region"
   desc "Multi-region EBS volume inventory (CIS 2.4)."
   example "
@@ -33,14 +34,14 @@ class AwsEbsVolumesMultiRegion < AwsResourceBase
     .register_column(:kms_key_ids, field: :kms_key_id)
     .install_filter_methods_on_resource(self, :table)
 
-  attr_reader :table
+  attr_reader :table, :connection_error
 
   def initialize(opts = {})
     opts = opts.dup
     region_override = Array(opts.delete(:regions))
     super(opts)
     validate_parameters
-    @regions = region_override.empty? ? fetch_default_regions : region_override
+    @regions = region_scope_or_fail!(@aws, region_override)
     @table = fetch_data
   end
 
@@ -54,13 +55,6 @@ class AwsEbsVolumesMultiRegion < AwsResourceBase
 
   private
 
-  def fetch_default_regions
-    regions = []
-    catch_aws_errors do
-      regions = @aws.compute_client.describe_regions.regions.map(&:region_name)
-    end
-    regions
-  end
 
   def fetch_data
     rows = []

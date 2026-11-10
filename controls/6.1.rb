@@ -109,10 +109,10 @@ control 'C-6.1' do
   "
   tag severity:              'medium'
   tag severity_source:       'unassessed'
-  tag nist:                  ['CM-6 b']
-  tag ksi:                   ['KSI-CMT-LMC', 'KSI-CMT-RMV', 'KSI-MLA-EVC', 'KSI-SVC-ACM']
-  tag nist_r4:               ['CM-6 b']
-  tag cci:                   ['CCI-000366']
+  tag nist:                  ['CP-9 (a)', 'CP-9 (b)']
+  tag ksi:                   ['KSI-RPL-ABO']
+  tag nist_r4:               ['CP-9 (a)', 'CP-9 (b)']
+  tag cci:                   ['CCI-000535', 'CCI-000537']
   tag cis_number:            '6.1'
   tag cis_rid:               '6.1'
   tag cis_benchmark:         'CIS AWS Storage Services Benchmark v1.0.0'

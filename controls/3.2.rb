@@ -41,10 +41,10 @@ control 'C-3.2' do
   "
   tag severity:              'medium'
   tag severity_source:       'unassessed'
-  tag nist:                  ['SC-28', 'IA-5 (1) (e)', 'AU-4', 'SI-4 (5)']
-  tag ksi:                   ['KSI-IAM-APM', 'KSI-INR-RIR', 'KSI-MLA-LET', 'KSI-MLA-OSM', 'KSI-SVC-SIN']
-  tag nist_r4:               ['AU-4', 'IA-5 (1) (e)', 'SC-28', 'SI-4 (5)']
-  tag cci:                   ['CCI-001199', 'CCI-000200', 'CCI-001848', 'CCI-002663']
+  tag nist:                  ['SC-28 (1)', 'SC-28', 'AU-4', 'AU-5 (1)']
+  tag ksi:                   ['KSI-MLA-OSM', 'KSI-SVC-SIN']
+  tag nist_r4:               ['AU-4', 'AU-5 (1)', 'SC-28', 'SC-28 (1)']
+  tag cci:                   ['CCI-002476', 'CCI-002475', 'CCI-001199', 'CCI-001849', 'CCI-001855']
   tag cis_number:            '3.2'
   tag cis_rid:               '3.2'
   tag cis_benchmark:         'CIS AWS Storage Services Benchmark v1.0.0'

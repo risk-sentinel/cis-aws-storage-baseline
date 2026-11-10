@@ -46,10 +46,10 @@ control 'C-4.6' do
   "
   tag severity:              'medium'
   tag severity_source:       'unassessed'
-  tag nist:                  ['IA-5 (1) (e)', 'AC-2 c', 'SI-4 (5)', 'SI-4 a 1']
-  tag ksi:                   ['KSI-IAM-APM', 'KSI-IAM-JIT', 'KSI-IAM-SNU', 'KSI-IAM-SUS', 'KSI-INR-RIR', 'KSI-MLA-LET', 'KSI-MLA-RVL', 'KSI-SVC-EIS']
-  tag nist_r4:               ['AC-2 c', 'IA-5 (1) (e)', 'SI-4 (5)', 'SI-4 a 1']
-  tag cci:                   ['CCI-000200', 'CCI-002113', 'CCI-002663', 'CCI-001253']
+  tag nist:                  ['AC-6 (2)', 'AC-6 (5)', 'SI-4 (13) (c)', 'SI-4 (13) (b)', 'SI-4 e']
+  tag ksi:                   ['KSI-IAM-JIT', 'KSI-IAM-SNU', 'KSI-MLA-RVL', 'KSI-SVC-EIS']
+  tag nist_r4:               ['AC-6 (2)', 'AC-6 (5)', 'SI-4 (13) (b)', 'SI-4 (13) (c)', 'SI-4 e']
+  tag cci:                   ['CCI-000039', 'CCI-002227', 'CCI-002669', 'CCI-001277', 'CCI-001257']
   tag cis_number:            '4.6'
   tag cis_rid:               '4.6'
   tag cis_benchmark:         'CIS AWS Storage Services Benchmark v1.0.0'

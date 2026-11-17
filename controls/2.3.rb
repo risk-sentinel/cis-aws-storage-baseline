@@ -60,10 +60,10 @@ control 'C-2.3' do
   "
   tag severity:              'medium'
   tag severity_source:       'unassessed'
-  tag nist:                  ['AC-18 a', 'CP-2 a 1']
-  tag ksi:                   ['KSI-RPL-ARP']
-  tag nist_r4:               ['AC-18 a', 'CP-2 a 1']
-  tag cci:                   ['CCI-002323', 'CCI-000443']
+  tag nist:                  ['CM-6 a', 'CM-2 a', 'CM-2 b 1', 'AC-18 a']
+  tag ksi:                   ['KSI-CMT-LMC', 'KSI-CMT-RMV', 'KSI-CNA-DFP', 'KSI-CNA-IBP', 'KSI-MLA-EVC', 'KSI-SVC-ACM']
+  tag nist_r4:               ['AC-18 a', 'CM-2 (1) (a)']
+  tag cci:                   ['CCI-003941', 'CCI-003909', 'CCI-000296', 'CCI-002323']
   tag cis_number:            '2.3'
   tag cis_rid:               '2.3'
   tag cis_benchmark:         'CIS AWS Storage Services Benchmark v1.0.0'
